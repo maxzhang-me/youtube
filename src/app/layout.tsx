@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inder } from 'next/font/google'
 import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
+import { TRPCProvider } from '@/trpc/client'
 
 const inder = Inder({
   weight: '400',
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <ClerkProvider afterSignOutUrl="/">
       <html lang="en">
-        <body className={inder.className}>{children}</body>
+        <body className={inder.className}>
+          <TRPCProvider>{children}</TRPCProvider>
+        </body>
       </html>
     </ClerkProvider>
   )
